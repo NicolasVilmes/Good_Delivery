@@ -1,0 +1,17 @@
+.container {
+  margin: 24px;
+}
+
+.swiper {
+  height: 90%;
+  width: 90%;
+}
+
+
+
+.swiper-slide img {
+  display: block;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+}
