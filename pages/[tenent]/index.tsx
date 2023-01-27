@@ -1,6 +1,11 @@
+import { SearchInput } from "@/components/Searchinput";
 import styles from "../../styles/Home.module.css";
 
 const Home = () => {
+  const handleSearch = (seachValue: String) => {
+    console.log("Você está procurando: ${searchValue}");
+  };
+
   return (
     <div className={styles.conteiner}>
       <header className={styles.header}>
@@ -17,7 +22,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className={styles.headerBottom}></div>
+        <div className={styles.headerBottom}>
+          <SearchInput mainColor="#FB9400" onsearch={handleSearch} />
+        </div>
       </header>
     </div>
   );
