@@ -1,10 +1,11 @@
 import { Header } from "@/components/Header";
+import { InputField } from "@/components/InputField";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/tenant";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/Login.module.css";
 
 const Login = (data: Props) => {
@@ -14,6 +15,9 @@ const Login = (data: Props) => {
     setTenant(data.tenant);
   }, [data.tenant, setTenant]);
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,6 +25,21 @@ const Login = (data: Props) => {
       </Head>
 
       <Header color={data.tenant.mainColor} backHref={`/${data.tenant.slug}`} />
+
+      <InputField
+        color={data.tenant.mainColor}
+        placeholder="Digite seu e-mail"
+        value={email}
+        onchange={setEmail}
+      />
+
+      <InputField
+        color={data.tenant.mainColor}
+        placeholder="Digite sua senha"
+        value={password}
+        onchange={setPassword}
+        password
+      />
     </div>
   );
 };
