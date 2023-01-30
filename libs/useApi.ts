@@ -5,9 +5,9 @@ export const useApi = () => {
     getTenant: (tenantSlug: string): boolean | Tenant => {
       switch (tenantSlug) {
         case 'Exburguer': 
-          return {
+          return {  
             slug: 'Exburguer',
-            name: 'Exburger',
+            name: 'Exburguer',
             mainColor: '#FF0700',
             secColor: '#00FF00'
           };

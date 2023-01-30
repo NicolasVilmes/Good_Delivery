@@ -1,3 +1,4 @@
+import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
 import { InputField } from "@/components/InputField";
 import { useAppContext } from "@/contexts/AppContext";
@@ -17,6 +18,8 @@ const Login = (data: Props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSubimit = () => {};
 
   return (
     <div className={styles.container}>
@@ -39,6 +42,13 @@ const Login = (data: Props) => {
         value={password}
         onchange={setPassword}
         password
+      />
+
+      <Button
+        color={data.tenant.mainColor}
+        label="Entrar"
+        onClick={handleSubimit}
+        fill
       />
     </div>
   );
