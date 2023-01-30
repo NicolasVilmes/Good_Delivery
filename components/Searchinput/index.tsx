@@ -1,13 +1,15 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
 import SearchIcon from "./searchIcon.svg";
+import { useAppContext } from "@/contexts/AppContext";
 
 type Props = {
-  mainColor: string;
   onsearch: (searchValue: string) => void;
 };
 
-export const SearchInput = ({ mainColor, onsearch }: Props) => {
+export const SearchInput = ({ onsearch }: Props) => {
+  const { tenant } = useAppContext();
+
   const [fucused, setfocused] = useState(false);
   const [searchValue, setsearcValue] = useState("");
 
@@ -28,10 +30,10 @@ export const SearchInput = ({ mainColor, onsearch }: Props) => {
   return (
     <div
       className={styles.container}
-      style={{ borderColor: fucused ? mainColor : "#FFF" }}
+      style={{ borderColor: fucused ? tenant?.mainColor : "#FFF" }}
     >
       <div className={styles.button} onClick={() => onsearch(searchValue)}>
-        <SearchIcon color={mainColor} />
+        <SearchIcon color={tenant?.mainColor} />
       </div>
       <input
         type="text"
