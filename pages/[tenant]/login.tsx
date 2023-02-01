@@ -6,6 +6,8 @@ import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/tenant";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../../styles/Login.module.css";
 
@@ -16,10 +18,16 @@ const Login = (data: Props) => {
     setTenant(data.tenant);
   }, [data.tenant, setTenant]);
 
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubimit = () => {};
+
+  const handleSingup = () => {
+    router.push(`/${data.tenant.slug}/signup`);
+  };
 
   return (
     <div className={styles.container}>
@@ -29,27 +37,66 @@ const Login = (data: Props) => {
 
       <Header color={data.tenant.mainColor} backHref={`/${data.tenant.slug}`} />
 
-      <InputField
-        color={data.tenant.mainColor}
-        placeholder="Digite seu e-mail"
-        value={email}
-        onchange={setEmail}
-      />
+      <div className={styles.header}>{data.tenant.name}</div>
 
-      <InputField
-        color={data.tenant.mainColor}
-        placeholder="Digite sua senha"
-        value={password}
-        onchange={setPassword}
-        password
-      />
+      <div
+        className={styles.subtitle}
+        style={{ borderBottomColor: data.tenant.mainColor }}
+      >
+        Ultilize suas credenciais para realizar o login.
+      </div>
 
-      <Button
-        color={data.tenant.mainColor}
-        label="Entrar"
-        onClick={handleSubimit}
-        fill
-      />
+      <div className={styles.line}></div>
+
+      <div className={styles.formArea}>
+        <div className={styles.inputArea}>
+          <InputField
+            color={data.tenant.mainColor}
+            placeholder="Digite seu e-mail"
+            value={email}
+            onchange={setEmail}
+          />
+        </div>
+
+        <div className={styles.inputArea}>
+          <InputField
+            color={data.tenant.mainColor}
+            placeholder="Digite sua senha"
+            value={password}
+            onchange={setPassword}
+            password
+          />
+        </div>
+
+        <div className={styles.inputArea}>
+          <Button
+            color={data.tenant.mainColor}
+            label="Entrar"
+            onClick={handleSubimit}
+            fill
+          />
+        </div>
+
+        <div
+          className={styles.forgetArea}
+          style={{ borderBottomColor: data.tenant.mainColor }}
+        >
+          Esqueceu sua senha?
+          <Link legacyBehavior href={`/${data.tenant.slug}/forget`}>
+            <a style={{ color: data.tenant.mainColor }}>Clique aqui</a>
+          </Link>
+        </div>
+
+        <div className={styles.line}></div>
+
+        <div className={styles.signupArea}>
+          <Button
+            color={data.tenant.mainColor}
+            label="Cadastre-se"
+            onClick={handleSingup}
+          />
+        </div>
+      </div>
     </div>
   );
 };

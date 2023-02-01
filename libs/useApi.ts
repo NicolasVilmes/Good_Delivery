@@ -16,7 +16,7 @@ export const useApi = () => {
             slug: 'Expizza',
             name: 'pizza',
             mainColor: '#CC1389',
-            secColor: '#00AF00'
+            secColor: '#bd3c32'
           };
         default: return false;
       }
