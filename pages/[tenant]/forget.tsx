@@ -62,7 +62,7 @@ const Forget = (data: Props) => {
         <div className={styles.inputArea}>
           <Button
             color={data.tenant.mainColor}
-            label="Cadastrar-se"
+            label="Enviar"
             onClick={handleSubimit}
             fill
           />
