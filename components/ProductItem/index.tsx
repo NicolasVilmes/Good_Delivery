@@ -1,4 +1,5 @@
 import { useAppContext } from "@/contexts/AppContext";
+import { useFormatter } from "@/libs/useFormatter";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import styles from "./styles.module.css";
@@ -9,6 +10,8 @@ type Props = {
 
 export const ProductItem = ({ data }: Props) => {
   const { tenant } = useAppContext();
+
+  const formatter = useFormatter();
 
   return (
     <a
@@ -32,7 +35,7 @@ export const ProductItem = ({ data }: Props) => {
         <div className={styles.catname}>{data.categoryName}</div>
         <div className={styles.prodname}>{data.name}</div>
         <div className={styles.price} style={{ color: tenant?.mainColor }}>
-          R${data.price.toFixed(2)}
+          {formatter.formatPrice(data.price)}
         </div>
       </div>
     </a>
