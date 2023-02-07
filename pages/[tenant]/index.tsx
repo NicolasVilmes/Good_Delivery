@@ -3,9 +3,10 @@ import { ProductItem } from "@/components/ProductItem";
 import { SearchInput } from "@/components/Searchinput";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
+import { Product } from "@/types/product";
 import { Tenant } from "@/types/tenant";
 import { GetServerSideProps } from "next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/Home.module.css";
 
 const Home = (data: Props) => {
@@ -14,6 +15,8 @@ const Home = (data: Props) => {
   useEffect(() => {
     setTenant(data.tenant);
   }, [data.tenant, setTenant]);
+
+  const [products, setProducts] = useState<Product[]>(data.products);
 
   const handleSearch = (seachValue: String) => {
     console.log(`Você está procurando: ${seachValue}`);
@@ -50,15 +53,9 @@ const Home = (data: Props) => {
       </header>
       <Banner />
       <div className={styles.grid}>
-        <ProductItem
-          data={{
-            id: 1,
-            image: "/temp/bg.png",
-            categoryName: "Tradicional",
-            name: "X-burger",
-            price: "R$ 25,50",
-          }}
-        />
+        {products.map((item, index) => (
+          <ProductItem key={index} data={item} />
+        ))}
       </div>
     </div>
   );
@@ -68,14 +65,15 @@ export default Home;
 
 type Props = {
   tenant: Tenant;
+  products: Product[];
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { tenant: tenantSlug } = context.query;
-  const api = useApi();
+  const api = useApi(tenantSlug as string);
 
   //Get Tenant
-  const tenant = await api.getTenant(tenantSlug as string);
+  const tenant = await api.getTenant();
   if (!tenant) {
     return {
       redirect: {
@@ -85,9 +83,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  //Get products
+  const products = await api.getAllProducts();
+
   return {
     props: {
       tenant,
+      products,
     },
   };
 };
