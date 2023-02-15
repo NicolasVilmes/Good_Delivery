@@ -1,7 +1,7 @@
 import { Banner } from "@/components/Banner";
 import { ProductItem } from "@/components/ProductItem";
 import { SearchInput } from "@/components/Searchinput";
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useApi } from "@/libs/useApi";
 import { Product } from "@/types/product";
 import { Tenant } from "@/types/tenant";

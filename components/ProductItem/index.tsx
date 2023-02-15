@@ -1,4 +1,4 @@
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useFormatter } from "@/libs/useFormatter";
 import { Product } from "@/types/product";
 import Image from "next/image";

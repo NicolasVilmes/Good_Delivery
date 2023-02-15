@@ -1,4 +1,4 @@
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useApi } from "@/libs/useApi";
 import { Product } from "@/types/product";
 import { Tenant } from "@/types/tenant";
