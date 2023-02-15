@@ -8,9 +8,17 @@ type Props = {
   UpdateCount: (newCount: number) => void;
   max?: number;
   min?: number;
+  small?: boolean;
 };
 
-export const Quantity = ({ color, count, UpdateCount, max, min }: Props) => {
+export const Quantity = ({
+  color,
+  count,
+  UpdateCount,
+  max,
+  min,
+  small,
+}: Props) => {
   const formatter = useFormatter();
 
   const [remove, setRemove] = useState(false);
@@ -37,17 +45,23 @@ export const Quantity = ({ color, count, UpdateCount, max, min }: Props) => {
         style={{
           color: remove ? "#FFF" : "#96A3AB",
           backgroundColor: remove ? color : "#F2F4F5",
+          width: small ? 42 : 48,
+          height: small ? 42 : 48,
         }}
       >
         -
       </div>
-      <div className={styles.qt}>{formatter.formatQt(count, 2)}</div>
+      <div className={styles.qt} style={{ fontSize: small ? 16 : 18 }}>
+        {formatter.formatQt(count, 2)}
+      </div>
       <div
         className={styles.button}
         onClick={handleAdd}
         style={{
           color: add ? "#FFF" : "#96A3AB",
           backgroundColor: add ? color : "#F2F4F5",
+          width: small ? 42 : 48,
+          height: small ? 42 : 48,
         }}
       >
         +
