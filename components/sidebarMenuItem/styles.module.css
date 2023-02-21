@@ -1,0 +1,12 @@
+.container {
+  font-weight: 400;
+  font-size: 16px;
+  color: #6A7D88;
+  padding: 24px 0px;
+}
+
+.container span {
+  margin-left: 24px;
+}
+
+

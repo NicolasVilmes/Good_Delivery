@@ -40,7 +40,7 @@ const Product = (data: Props) => {
         <Header
           color={data.tenant.mainColor}
           backHref={`/${data.tenant.slug}`}
-          title="Poduto"
+          title="Produto"
           reverse
         />
       </div>
